@@ -1,5 +1,5 @@
 server:
-  port: 8089
+  port: 8085
   contextPath: /
 
 logging:
@@ -7,12 +7,12 @@ logging:
     learning: trace
 
 spring:
-  data:
-      elasticsearch:
-        cluster-name: bigdata
-        #默认为elasticsearch
-        cluster-nodes: hadoop01:9300,hadoop02:9300,hadoop03:9300
-        client.transport.sniff: false
+#  data:
+#      elasticsearch:
+#        cluster-name: bigdata
+#        #默认为elasticsearch
+#        cluster-nodes: hadoop01:9300,hadoop02:9300,hadoop03:9300
+#        client.transport.sniff: false
         #配置es节点信息，逗号分隔，如果没有指定，则启动ClientNode
 #        properties:
 #            path:

@@ -114,16 +114,17 @@
 							 <li class="admin-parent">
 								 <a class="am-cf" data-am-collapse="{target: '#collapse-nav6'}"><span class="am-icon-file"></span> 斗鱼 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
 								 <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav6">
+									 <li><a href="#" toPage="/page/douyu_danmu_set" class="am-cf tocontent"> 斗鱼直播间设置</a></li>
 									 <li><a href="#" toPage="/page/douyu_danmu" class="am-cf tocontent"> 斗鱼弹幕</a></li>
 									 <li><a href="#" toPage="/page/douyu_danmu_window" class="tocontent">斗鱼弹幕(spark-window 5min 10s refresh)</a></li>
+									 <li><a href="#" toPage="/page/douyu_gift" class="am-cf tocontent"> 斗鱼直播间礼物</a></li>
 									 <li><a href="#" toPage="/page/douyu_danmu_collect" class="am-cf tocontent"> 斗鱼弹幕汇总</a></li>
 								 </ul>
 							 </li>
 						    <li class="admin-parent">
-						      <a class="am-cf" data-am-collapse="{target: '#collapse-nav5'}"><span class="am-icon-file"></span> 表单 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+						      <a class="am-cf" data-am-collapse="{target: '#collapse-nav5'}"><span class="am-icon-file"></span> WAF 防火墙数据统计 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
 						      <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav5">
-						        <li><a href="#" toPage="/page/form_basic" class="am-cf tocontent"> 基本表单</a></li>
-						        <li><a href="#" toPage="/page/form_validate" class="tocontent">表单验证</a></li>
+						        <li><a href="#" toPage="/page/waf_index" class="am-cf tocontent"> 数据一览</a></li>
 						      </ul>
 						    </li>
 						  </ul>

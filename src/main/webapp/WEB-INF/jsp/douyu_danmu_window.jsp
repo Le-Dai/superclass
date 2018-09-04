@@ -350,7 +350,7 @@
                 var pie3 = echarts.init(document.getElementById("pie3"));
                 option = {
                     title : {
-                        text: '拉钩网职公司领域分布',
+                        text: '斗鱼弹幕实时分析',
                         subtext: ''
                     },
                     tooltip : {

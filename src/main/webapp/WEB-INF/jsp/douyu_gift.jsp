@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>后台模板</title>
     <link rel="stylesheet" href="/assets/css/amazeui.css" />
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../assets/css/core.css" />
     <link rel="stylesheet" href="/assets/css/menu.css" />
@@ -21,14 +22,17 @@
         <!-- Start content -->
         <div class="content">
             <div class="am-g" style="display: block;height: 100%;">
-                <div class="am-u-md-6" >
+                <div class="am-u-md-12" >
                     <!-- 折线图堆叠 -->
-                    <div class="card-box">
-                        <div  id="pie1" style="width: 100%;height: 400px;"></div>
+                    <div id="title" class="card-box" style="margin:auto;" >
+                        直播间列表
+                    </div>
+                    <div id="bts" class="card-box" style="height: 200px;">
+                        <%--<div  id="pie1" style="width: 100%;height: 400px;"></div>--%>
                     </div>
                 </div>
 
-                <div class="am-u-md-6">
+                <div class="am-u-md-6" style="display: none;">
                     <!-- 堆叠区域图  -->
                     <div class="card-box">
                         <div  id="pie2" style="width: 100%;height: 400px;"></div>
@@ -39,7 +43,7 @@
                 <div class="am-u-md-12">
                     <!-- Step Line -->
                     <div class="card-box">
-                        <div  id="pie3" style="height: 380px;"></div>
+                        <div  id="pie3" style="width: 100%;height: 500px;"></div>
                     </div>
                 </div>
 
@@ -71,116 +75,38 @@
 
 </body>
 <script type="text/javascript">
+    var room = "9293";
+    function btck(node) {
+        room = $(node).text()
+        getonlineRoom()
+    }
+    $.ajax({
+        url: "/douyu/danmu/getAllGiftRoom",
+        type: "GET",
+        data: {"type": "1"},
+        //dataType: "jsonp",  //指定服务器返回的数据类型
+        //jsonp: "callback",
+        //jsonpCallback:'showVideoCateData',
+        success: function (data) {
+            var keys = new Array()
+            var values = new Array()
+            var a = 0
+            $.each(data, function (i, val) {
+                $("#bts").append("<button type=\"button\" class=\"btn btn-primary\" onclick='btck(this);'>"+val.rid+"</button>")
+            })
+            console.log(keys)
+
+            var lastIndex = 5;
+            var axisData;
+            //clearInterval(timeTicket);
+            timeTicket = setInterval(function () {
+            })
+            lastIndex += 1;
+            // 动态数据接口 addData
+        }
+    });
     function updatetop2() {
         getonlineRoom();
-        $.ajax({
-            url: "/douyu/danmu/getDanMuCount",
-            type: "GET",
-            data: {"type": "1"},
-            //dataType: "jsonp",  //指定服务器返回的数据类型
-            //jsonp: "callback",
-            //jsonpCallback:'showVideoCateData',
-            success: function (data) {
-                var keys = new Array()
-                var values = new Array()
-                var a = 0
-                $.each(data, function (i, val) {
-                    keys[a] = val._1
-                    var rows = new Object()
-                    rows.name = val._1 + ":" + val._2
-                    rows.value = val._2
-                    values[a] = rows
-                    a++
-                })
-                console.log(keys)
-                var pie1 = echarts.init(document.getElementById("pie1"));
-                option = {
-                    title: {
-                        text: '实时词频统计',
-                        subtext: '',
-                    },
-                    tooltip: {
-                        trigger: 'item'
-                    },
-                    legend: {
-                        data: keys
-                    },
-                    toolbox: {
-                        show: true,
-                        feature: {
-                            mark: {show: true},
-                            dataView: {show: true, readOnly: false},
-                            restore: {show: true},
-                            saveAsImage: {show: true}
-                        }
-                    },
-                    /*polar : [
-                        {
-                            indicator : [
-                                { text : '指标一' },
-                                { text : '指标二' },
-                                { text : '指标三' },
-                                { text : '指标四' },
-                                { text : '指标五' }
-                            ],
-                            //center : [document.getElementById('main').offsetWidth - 250, 225],
-                            radius : 100
-                        }
-                    ],*/
-                    calculable: false,
-                    series: [
-                        {
-                            name: '分词',
-                            type: 'pie',
-                            radius: [0, 110],
-                            center: [250, 225],
-                            data: (function () {
-//                                var res = [];
-//                                var len = 0;
-//                                while (len++ < 5) {
-//                                    res.push({
-//                                        name: '随机数据' + len,
-//                                        value: Math.round(Math.random()*10)
-//                                    });
-//                                }
-                                return values;
-                            })()
-                        },
-                        {
-                            name: 'radar',
-                            type: 'radar',
-                            itemStyle: {normal: {areaStyle: {type: 'default'}}},
-                            data: (function () {
-                                var res = [];
-                                var len = 0;
-                                while (len++ < 3) {
-                                    res.push({
-                                        name: 'data' + len,
-                                        value: [
-                                            Math.round(Math.random() * 100),
-                                            Math.round(Math.random() * 100),
-                                            Math.round(Math.random() * 100),
-                                            Math.round(Math.random() * 100),
-                                            Math.round(Math.random() * 100)
-                                        ]
-                                    });
-                                }
-                                return res;
-                            })()
-                        }
-                    ]
-                };
-                var lastIndex = 5;
-                var axisData;
-                //clearInterval(timeTicket);
-                timeTicket = setInterval(function () {
-                })
-                lastIndex += 1;
-                // 动态数据接口 addData
-                pie1.setOption(option);
-            }
-        });
-
         $.ajax({
             url: "/douyu/danmu/getDanMuCount",
             type: "GET",
@@ -305,9 +231,9 @@
     var myChart  = echarts.init(document.getElementById("pie3"));
     function getonlineRoom() {
         $.ajax({
-            url: "/douyu/danmu/getDanMuCount",
+            url: "/douyu/danmu/getGiftByRoom",
             type: "GET",
-            data: {"type": "2"},
+            data: {"type": room},
             //dataType: "jsonp",  //指定服务器返回的数据类型
             //jsonp: "callback",
             //jsonpCallback:'showVideoCateData',
@@ -322,13 +248,14 @@
                 var b = 0
                 var sers = new Array()
                 $.each(result, function (i, val) {
-                    var nseries = new Object()
-                    nseries.name=val._1;
-                    nseries.type='line'
-                    nseries.data=[val._2,val._2,val._2,val._2,val._2,val._2,val._2,val._2,val._2,val._2]
-                    sers[a] = nseries
-                    keys[a] = val._1;
-                    values[a] = val._2;
+//                    var nseries = new Object()
+//                    nseries.name=val.rid;
+//                    nseries.type='bar'
+//                    nseries.data=val.gifts
+                    //[val._2,val._2,val._2,val._2,val._2,val._2,val._2,val._2,val._2,val._2]
+//                    sers[a] = nseries
+                    keys[a] = val.giftName;
+                    values[a] = val.number;
                     a++;
                 })
                 //result = JSON.parse(data)
@@ -356,7 +283,7 @@
                 var pie3 = echarts.init(document.getElementById("pie3"));
                 option = {
                     title : {
-                        text: '斗鱼弹幕实时分析',
+                        text: '直播间'+room+"礼物实时数据",
                         subtext: ''
                     },
                     tooltip : {
@@ -406,6 +333,59 @@
                         }
                     ]
                 };
+
+                /*             option = {
+                                 title : {
+                                     text: '拉钩网职公司领域分布',
+                                     subtext: ''
+                                 },
+                                 tooltip : {
+                                     trigger: 'axis'
+                                 },
+                                 legend: {
+                                     data:['数量']
+                                 },
+                                 toolbox: {
+                                     show : true,
+                                     feature : {
+                                         mark : {show: true},
+                                         dataView : {show: true, readOnly: false},
+                                         magicType : {show: true, type: ['line', 'bar']},
+                                         restore : {show: true},
+                                         saveAsImage : {show: true}
+                                     }
+                                 },
+                                 calculable : true,
+                                 xAxis : [
+                                     {
+                                         type : 'category',
+                                         data : keys
+                                     }
+                                 ],
+                                 yAxis : [
+                                     {
+                                         type : 'value'
+                                     }
+                                 ],
+                                 series : [
+                                     {
+                                         name:'数量',
+                                         type:'bar',
+                                         data:values,
+                                         markPoint : {
+                                             data : [
+                                                 {type : 'max', name: '最大值'},
+                                                 {type : 'min', name: '最小值'}
+                                             ]
+                                         },
+                                         markLine : {
+             //                            data : [
+             //                                {type : 'average', name: '平均值'}
+             //                            ]
+                                         }
+                                     }
+                                 ]
+                             };*/
 
 
                 pie3.setOption(option);

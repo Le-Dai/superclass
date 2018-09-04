@@ -1,6 +1,6 @@
 package com.wxstc.bigdata.controller;
 
-import com.sun.org.apache.bcel.internal.util.ClassPath;
+import com.wxstc.bigdata.bean.DyRoomGift;
 import com.wxstc.bigdata.bean.Es_DanMu;
 import com.wxstc.bigdata.bean.ScalaYuanZu;
 import com.wxstc.bigdata.es.Dy_DanMuSearchRepository;
@@ -11,15 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.Method;
-import java.lang.reflect.Proxy;
 import java.util.*;
 
 @Controller
@@ -113,4 +109,32 @@ public class DyController {
         return res;
     }
 
+    @RequestMapping("/douyu/danmu/setDyDanMu")
+    @ResponseBody
+    public void setDyDanMu(){
+
+    }
+
+    @RequestMapping("/douyu/danmu/getGiftByRoom")
+    @ResponseBody
+    public Object getGiftByRoom(String type){
+        String getGiftByRoom = jedisClient.get("dy_giftByRoom");
+        List<DyRoomGift> dyRoomGifts = JsonUtils.jsonToList(getGiftByRoom, DyRoomGift.class);
+        for (DyRoomGift row:dyRoomGifts){
+            if(row.rid.equals(type)){
+                return row.gifts;
+            }else if(type.equals("")){
+                return row.gifts;
+            }
+        }
+        return null;
+    }
+
+    @RequestMapping("/douyu/danmu/getAllGiftRoom")
+    @ResponseBody
+    public Object getAllGiftRoom(){
+        String getGiftByRoom = jedisClient.get("dy_giftByRoom");
+        List<DyRoomGift> dyRoomGifts = JsonUtils.jsonToList(getGiftByRoom, DyRoomGift.class);
+        return dyRoomGifts;
+    }
 }
