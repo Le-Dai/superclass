@@ -67,8 +67,10 @@
 		<script type="text/javascript" src="../assets/js/amazeui.min.js"></script>
 		<script type="text/javascript" src="../assets/js/app.js" ></script>
 		<script type="text/javascript" src="../assets/js/blockUI.js" ></script>
-		<script type="text/javascript" src="../assets/js/charts/echarts.min.js" ></script>
-		<%--<script type="text/javascript" src="../assets/js/charts/pieChart.js" ></script>--%>
+		<%--<script type="text/javascript" src="../assets/js/charts/echarts.min.js" ></script>--%>
+        <script type="text/javascript" src="../echarts/echarts.js" ></script>
+        <script type="text/javascript" src="../echarts/macarons.js" ></script>
+        <%--<script type="text/javascript" src="../assets/js/charts/pieChart.js" ></script>--%>
 	</body>
 	<script type="text/javascript">
         $.ajax({
@@ -79,7 +81,7 @@
             //jsonpCallback:'showVideoCateData',
             success: function (data) {
                 $("#title").text("据统计:  截止2018年2月6日 超级课程表APP 用户数据统计 总共用户:  "+data.all_count+"  男用户:  "+data.man_count+" 女用户:  "+data.girl_count)
-                var pie1 = echarts.init(document.getElementById("pie1"));
+                var pie1 = echarts.init(document.getElementById("pie1"),"macarons");
 
                 option = {
 
@@ -131,7 +133,7 @@
 
                 pie1.setOption(option);
 
-                var pie3 = echarts.init(document.getElementById("pie3"));
+                var pie3 = echarts.init(document.getElementById("pie3"),"macarons");
 
                 option = {
                     title : {

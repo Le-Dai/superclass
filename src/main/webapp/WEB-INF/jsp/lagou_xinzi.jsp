@@ -74,6 +74,7 @@
 <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
 <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
 <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
+<script type="text/javascript" src="../echarts/macarons.js" ></script>
 
 </body>
 <script type="text/javascript">
@@ -144,7 +145,7 @@
                 //console.log(option2.series[a].data)
                 //text = text + "Key:" + i + ", Value:" + val;
                 a=a+1*/
-            var pie3 = echarts.init(document.getElementById("pie3"));
+            var pie3 = echarts.init(document.getElementById("pie3"),"macarons");
             option = {
                 title : {
                     text: '拉钩网职位薪资分布',
@@ -201,7 +202,7 @@
 
             pie3.setOption(option);
 
-            var pie4 = echarts.init(document.getElementById("pie4"));
+            var pie4 = echarts.init(document.getElementById("pie4"),"macarons");
             option = {
                 title : {
                     text: '拉钩网职位工作类型统计',

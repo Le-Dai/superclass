@@ -25,7 +25,7 @@
                 <div class="am-u-md-12" >
                     <!-- 折线图堆叠 -->
                     <div id="title" class="card-box" style="margin:auto;" >
-                        直播间列表
+                        礼物列表
                     </div>
                     <div id="bts" class="card-box" style="height: 200px;">
                         <%--<div  id="pie1" style="width: 100%;height: 400px;"></div>--%>
@@ -76,13 +76,13 @@
 
 </body>
 <script type="text/javascript">
-    var room = "9293";
+    var room = "粉丝荧光棒";
     function btck(node) {
         room = $(node).text()
         getonlineRoom()
     }
     $.ajax({
-        url: "/douyu/danmu/getAllGiftRoom",
+        url: "/douyu/danmu/getGiftByType",
         type: "GET",
         data: {"type": "1"},
         //dataType: "jsonp",  //指定服务器返回的数据类型
@@ -109,7 +109,7 @@
     function updatetop2() {
         getonlineRoom();
         $.ajax({
-            url: "/douyu/danmu/getDanMuCount",
+            url: "/douyu/danmu/getAllGift",
             type: "GET",
             data: {"type": "3"},
             //dataType: "jsonp",  //指定服务器返回的数据类型
@@ -232,7 +232,7 @@
     var myChart  = echarts.init(document.getElementById("pie3"),'macarons');
     function getonlineRoom() {
         $.ajax({
-            url: "/douyu/danmu/getGiftByRoom",
+            url: "/douyu/danmu/getGiftByUser",
             type: "GET",
             data: {"type": room},
             //dataType: "jsonp",  //指定服务器返回的数据类型
@@ -284,7 +284,7 @@
                 var pie3 = echarts.init(document.getElementById("pie3"),"vintage");
                 option = {
                     title : {
-                        text: '直播间'+room+"礼物实时数据",
+                        text: room+"礼物实时数据",
                         subtext: ''
                     },
                     tooltip : {

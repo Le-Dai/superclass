@@ -2,6 +2,7 @@ package com.wxstc.bigdata.controller;
 
 import com.wxstc.bigdata.bean.DyRoomGift;
 import com.wxstc.bigdata.bean.Es_DanMu;
+import com.wxstc.bigdata.bean.GiftSum;
 import com.wxstc.bigdata.bean.ScalaYuanZu;
 import com.wxstc.bigdata.es.Dy_DanMuSearchRepository;
 import com.wxstc.bigdata.redis.JedisClient;
@@ -137,4 +138,71 @@ public class DyController {
         List<DyRoomGift> dyRoomGifts = JsonUtils.jsonToList(getGiftByRoom, DyRoomGift.class);
         return dyRoomGifts;
     }
+
+    @RequestMapping("/douyu/danmu/getGiftByRoomAll")
+    @ResponseBody
+    public Object getGiftByRoomAll(){
+        String getGiftByRoom = jedisClient.get("dy_giftByRoom");
+        List<DyRoomGift> dyRoomGifts = JsonUtils.jsonToList(getGiftByRoom, DyRoomGift.class);
+        HashMap<String,Object> m = new HashMap<String,Object>();
+
+        List keys = new ArrayList();
+        List values = new ArrayList();
+
+        for (DyRoomGift row:dyRoomGifts){
+            keys.add(row.rid);
+            List gs = (List) row.gifts;
+            long number = 0;
+            for (Object s : gs){
+                LinkedHashMap s1 = (LinkedHashMap) s;
+                long tmp = s1.get("number")==null?0: Long.valueOf(s1.get("number").toString()) ;
+                number += tmp;
+            }
+            values.add(number);
+        }
+        m.put("keys",keys);
+        m.put("values",values);
+        return m;
+    }
+
+    @RequestMapping("/douyu/danmu/getGiftAll")
+    @ResponseBody
+    public Object getGiftAll(){
+        String json = jedisClient.get("dy_giftall");
+        List<ScalaYuanZu> dyRoomGifts = JsonUtils.jsonToList(json, ScalaYuanZu.class);
+        List keys = new ArrayList();
+        List values = new ArrayList();
+        HashMap<String,Object> m = new HashMap<String, Object>();
+        for (ScalaYuanZu row:dyRoomGifts){
+            keys.add(row._1);
+            values.add(row._2);
+        }
+        m.put("keys",keys);
+        m.put("values",values);
+        return m;
+    }
+
+    @RequestMapping("/douyu/danmu/getGiftByType")
+    @ResponseBody
+    public Object getGiftByType(String type){
+        String getGiftByRoom = jedisClient.get("dy_giftByGift");
+        List<DyRoomGift> dyRoomGifts = JsonUtils.jsonToList(getGiftByRoom, DyRoomGift.class);
+        return dyRoomGifts;
+    }
+
+    @RequestMapping("/douyu/danmu/getGiftByUser")
+    @ResponseBody
+    public Object getGiftByUser(String type){
+        String getGiftByRoom = jedisClient.get("dy_giftByGift");
+        List<DyRoomGift> dyRoomGifts = JsonUtils.jsonToList(getGiftByRoom, DyRoomGift.class);
+        for (DyRoomGift row:dyRoomGifts){
+            if(row.rid.equals(type)){
+                return row.gifts;
+            }else if(type.equals("")){
+                return row.gifts;
+            }
+        }
+        return null;
+    }
+
 }

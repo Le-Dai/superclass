@@ -75,6 +75,7 @@
         <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
         <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
         <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
+        <script type="text/javascript" src="../echarts/macarons.js" ></script>
 	</body>
 	<script type="text/javascript">
         var result = null
@@ -117,7 +118,7 @@
                     //console.log(option2.series[a].data)
                     //text = text + "Key:" + i + ", Value:" + val;
                     a=a+1*/
-                    var pie3 = echarts.init(document.getElementById("pie3"));
+                    var pie3 = echarts.init(document.getElementById("pie3"),"macarons");
                     option = {
                         title: {
                             text: '超级课程表全国用户高校分布',

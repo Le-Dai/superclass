@@ -115,10 +115,26 @@
 								 <a class="am-cf" data-am-collapse="{target: '#collapse-nav6'}"><span class="am-icon-file"></span> 斗鱼 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
 								 <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav6">
 									 <li><a href="#" toPage="/page/douyu_danmu_set" class="am-cf tocontent"> 斗鱼直播间设置</a></li>
-									 <li><a href="#" toPage="/page/douyu_danmu" class="am-cf tocontent"> 斗鱼弹幕</a></li>
-									 <li><a href="#" toPage="/page/douyu_danmu_window" class="tocontent">斗鱼弹幕(spark-window 5min 10s refresh)</a></li>
-									 <li><a href="#" toPage="/page/douyu_gift" class="am-cf tocontent"> 斗鱼直播间礼物</a></li>
-									 <li><a href="#" toPage="/page/douyu_danmu_collect" class="am-cf tocontent"> 斗鱼弹幕汇总</a></li>
+                                     <li><a href="#" class="am-cf" data-am-collapse="{target: '#collapse-nava'}">
+                                         <i class="am-icon-line-chart" aria-hidden="true"></i>斗鱼弹幕 <span class="am-icon-angle-right am-fr am-margin-right"></span>
+                                     </a>
+                                         <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nava">
+                                             <li><a href="#" toPage="/page/douyu_danmu" class="am-cf tocontent"> 斗鱼弹幕</a></li>
+                                             <li><a href="#" toPage="/page/douyu_danmu_window" class="tocontent">斗鱼弹幕(spark-window 5min 10s refresh)</a></li>
+                                             <li><a href="#" toPage="/page/douyu_danmu_collect" class="am-cf tocontent"> 斗鱼弹幕汇总</a></li>
+                                         </ul>
+                                     </li>
+
+                                     <li><a href="#" class="am-cf" data-am-collapse="{target: '#collapse-navb'}">
+                                         <i class="am-icon-line-chart" aria-hidden="true"></i>斗鱼直播间礼物 <span class="am-icon-angle-right am-fr am-margin-right"></span>
+                                     </a>
+                                         <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-navb">
+                                             <li><a href="#" toPage="/page/douyu_giftall" class="am-cf tocontent"> 斗鱼礼物总览</a></li>
+                                             <li><a href="#" toPage="/page/douyu_gift" class="am-cf tocontent"> 斗鱼直播间礼物</a></li>
+                                             <li><a href="#" toPage="/page/douyu_giftlist" class="am-cf tocontent"> 斗鱼礼物排行榜</a></li>
+                                         </ul>
+                                     </li>
+
 								 </ul>
 							 </li>
 						    <li class="admin-parent">
@@ -194,6 +210,8 @@
 		<script type="text/javascript" src="../assets/js/blockUI.js" ></script>
 		<script type="text/javascript" src="../assets/js/charts/echarts.min.js" ></script>
 		<script type="text/javascript" src="../assets/js/charts/columnarChart.js" ></script>
+        <script type="text/javascript" src="http://echarts.baidu.com/echarts2/doc/example/theme/macarons.js" ></script>
+
 	<script type="text/javascript">
 		$(".tocontent").click(function () {
 			$("#content").attr("src",$(this).attr("toPage"))
