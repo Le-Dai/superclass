@@ -15,6 +15,18 @@
 		<link rel="stylesheet" href="/assets/css/admin.css" />
 		<link rel="stylesheet" href="/assets/css/page/typography.css" />
 	</head>
+    <style>
+        BODY {
+            SCROLLBAR-FACE-COLOR: #e8e7e7;
+            SCROLLBAR-HIGHLIGHT-COLOR: #ffffff;
+            SCROLLBAR-SHADOW-COLOR: #ffffff;
+            SCROLLBAR-3DLIGHT-COLOR: #cccccc;
+            SCROLLBAR-ARROW-COLOR: #03B7EC;
+            SCROLLBAR-TRACK-COLOR: #EFEFEF;
+            SCROLLBAR-DARKSHADOW-COLOR: #b2b2b2;
+            SCROLLBAR-BASE-COLOR: #000000;
+        }
+    </style>
 	<body>
 		<!-- Begin page -->
 <%--		<header class="am-topbar am-topbar-fixed-top" >
@@ -78,7 +90,7 @@
 	                    <!-- End User -->
 
 						 <ul class="am-list admin-sidebar-list">
-						    <li><a href="#"><span class="am-icon-home"></span> 首页</a></li>
+						    <li><a href="#" toPage="/page/blog" class="tocontent"><span class="am-icon-home"></span> 首页</a></li>
 						    <li class="admin-parent">
 						      <a class="am-cf" data-am-collapse="{target: '#collapse-nav1'}"><span class="am-icon-table"></span> 超级课程表用户分析 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
 						      <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav1">
@@ -160,7 +172,7 @@
 		<!-- Start right Content here -->
 		<%--<div class="content-page">--%>
 			<!-- Start content -->
-			<iframe id="content" width="100%" height="100%" scrolling="no"></iframe>
+			<iframe id="content" width="100%" height="100%" src="https://mrdlontheway.github.io/" scrolling="auto"></iframe>
 			<%--<div class="content">
 				<div class="am-g">
 					<div class="am-u-md-6" >
