@@ -110,12 +110,6 @@ public class DyController {
         return res;
     }
 
-    @RequestMapping("/douyu/danmu/setDyDanMu")
-    @ResponseBody
-    public void setDyDanMu(){
-
-    }
-
     @RequestMapping("/douyu/danmu/getGiftByRoom")
     @ResponseBody
     public Object getGiftByRoom(String type){
