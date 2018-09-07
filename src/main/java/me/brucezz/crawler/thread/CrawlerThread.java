@@ -119,7 +119,7 @@ public class CrawlerThread implements Runnable {
                         else if(response.contains("dgb"))
                             giftType = 3;
                         DyGift gift = new DyGift(uid,gid,nickName,giftName,rid,bid,sid,giftType);
-                        LogUtil.i("Danmaku", gift.toString();
+                        LogUtil.i("Danmaku", gift.toString());
                         if(DyThreadController.GIFTTOKAFKA){
                             if(response.contains("spbc")&&threadId!=0){
                                 continue;
